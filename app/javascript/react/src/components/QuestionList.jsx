@@ -50,7 +50,7 @@ const QuestionList = () => {
     <div className="row">
       <div className="col-lg-10 max-auto">
         {questionList.map((question) => 
-          <QueestionDetail question={question} key={question.id} />
+          <QuestionDetail question={question} key={question.id} />
         )}
       </div>
     </div>
