@@ -23,9 +23,11 @@ class  QuestionDetail extends React.Component {
       <div className="card rounded-0 mt-3">
         <div className="card-body">
           <h3 className="card-title">{this.props.question.title}</h3>
-          <p className="lead">
-            <div className="badge bg-primary">{this.props.question.tag}</div>
-          </p>
+          <div className="lead">
+            <p  className="badge bg-primary" >
+              {this.props.question.tag}
+            </p>
+          </div>          
           <button className="btn btn-primary mt-1" onClick={this.updateLikeCounter}>Like</button>
           { this.likeCount > 0 ?
               <span className="badge bg-primary">{this.state.likeCount}</span> : ''
