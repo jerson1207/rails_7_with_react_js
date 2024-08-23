@@ -1,27 +1,40 @@
 import * as React from 'react'
-import { useState } from 'react'
 import * as ReactDOM from 'react-dom'
 
-const QuestionDetail = (props) => {
+class  QuestionDetail extends React.Component {
 
-  const [likeCount, setLikeCount] = useState(0)
+  constructor(props) {
+    super(props)
+    this.state = { likeCount: 0 }
 
-  return(
-    <div className="card rounded-0 mt-3">
-      <div className="card-body">
-        <h3 className="card-title">{props.question.title}</h3>
-        <p className="lead">
-          <div className="badge bg-primary">{props.question.tag}</div>
-        </p>
-        <button className="btn btn-primary mt-1" onClick={() => 
-          setLikeCount(likeCount + 1)}>Like</button>
-        { likeCount > 0 ?
-            <span className="badge bg-primary">{likeCount}</span> : ''
-          
-        }
+    this.updateLikeCounter = this.updateLikeCounter.bind(this)
+  }
+
+  updateLikeCounter() {
+    this.setState(function(state) {
+      return {
+        likeCount: state.likeCount + 1
+      }
+    })
+  }
+  
+  render() {
+    return(
+      <div className="card rounded-0 mt-3">
+        <div className="card-body">
+          <h3 className="card-title">{this.props.question.title}</h3>
+          <p className="lead">
+            <div className="badge bg-primary">{this.props.question.tag}</div>
+          </p>
+          <button className="btn btn-primary mt-1" onClick={this.updateLikeCounter}>Like</button>
+          { this.likeCount > 0 ?
+              <span className="badge bg-primary">{this.state.likeCount}</span> : ''
+            
+          }
+        </div>
       </div>
-    </div>
-  )
+    )
+  }  
 }
 
 export default QuestionDetail
