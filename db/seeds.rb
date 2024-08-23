@@ -1,9 +1,44 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+puts "Create questions"
+Question.create(
+  [
+    {
+      title: 'How to check if a key is present in the Hash?',
+      tag: "Ruby"
+    },
+    {
+      title: 'What is the difference between `map` and `collect` in Ruby?',
+      tag: "Ruby"
+    },
+    {
+      title: 'How do you convert a string to a symbol in Ruby?',
+      tag: "Ruby"
+    },
+    {
+      title: 'What are Ruby blocks, procs, and lambdas?',
+      tag: "Ruby"
+    },
+    {
+      title: 'How can you handle exceptions in Ruby?',
+      tag: "Ruby"
+    },
+    {
+      title: 'What is the purpose of the `self` keyword in Ruby?',
+      tag: "Ruby"
+    },
+    {
+      title: 'How do you define a class in Ruby?',
+      tag: "Ruby"
+    },
+    {
+      title: 'What is the use of the `attr_accessor` method in Ruby?',
+      tag: "Ruby"
+    },
+    {
+      title: 'How can you iterate over a hash in Ruby?',
+      tag: "Ruby"
+    },
+    {
+      title: 'What are Ruby modules and how are they used?',
+      tag: "Ruby"
+    }]
+)
