@@ -3,6 +3,8 @@ import * as ReactDOM from 'react-dom'
 import { useState, useEffect } from 'react'
 import QuestionDetail from './QuestionDetail'
 import EmptyQuestionMessage from './EmptyQuestionMessage'
+import Loader from './Loader'
+
 
 const QuestionList = () => {
 
@@ -18,10 +20,12 @@ const QuestionList = () => {
   const [questionsList, setQuestionList] = useState([])
   const [selectedOption, setSelectedOption] = useState(questionTags[0].value)
   const [isShowAlert, setIsShowAlert] = useState(false)
+  const [isShowLoader, setIsShowLoader] = useState(true)
 
   const questionsUrl = 'http://localhost:3000/api/v1/questions'
 
   const fetchQuestionList = () => {
+    setIsShowLoader(false)
     fetch (questionsUrl)
       .then((response) => response.json())
       .then((data) => {
@@ -35,6 +39,8 @@ const QuestionList = () => {
   }, [])
 
   const updateSelectedItem = (event) => {
+    setIsShowLoader(false)
+    setIsShowAlert(false)
     setQuestionList([])
     setSelectedOption(event.target.value)
     fetch(questionsUrl + `?tag=${questionTags[event.target.value].label}`)
@@ -42,10 +48,9 @@ const QuestionList = () => {
       .then((data) => {
         console.log(data)
         setQuestionList(data)
-        if (data.length == 0) {
+        if(data.length == 0) {
           setIsShowAlert(true)
-        } else {
-          setIsShowAlert(false)
+          setIsShowLoader(true)
         }
         
       })
@@ -65,7 +70,7 @@ const QuestionList = () => {
           { questionsList.length > 0 ?
             questionsList.map((question) => 
               <QuestionDetail question={question} key={question.id} />
-            ) : ''
+            ) : <Loader isShowLoader={isShowLoader} />
           }
           {
             isShowAlert && <EmptyQuestionMessage tagname={questionTags[selectedOption]
