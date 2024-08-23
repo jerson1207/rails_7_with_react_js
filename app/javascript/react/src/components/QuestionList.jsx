@@ -49,7 +49,7 @@ const QuestionList = () => {
     <div className="row">
       <div className="col-lg-10 max-auto">
         {questionList.map((question) => 
-          <div className="card rounded-0 mt-3">
+          <div className="card rounded-0 mt-3" key={question.id}>
             <div className="card-body">
               <h3 className="card-title">{question.title}</h3>
               <p className="lead">
